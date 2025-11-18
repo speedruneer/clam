@@ -19,6 +19,7 @@
 - RyFS
 - ATA LBA48 Support (IDE/SATA Legacy)
 - uhci Support
+- SBTA Support
 - ohci Support
 - ehci Support
 - xhci Support
@@ -26,4 +27,3 @@
 - ahci Support
 - PCIe Support (probably)
 - Proper program loader
-- SBTA Support
