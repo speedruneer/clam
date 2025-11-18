@@ -6,15 +6,17 @@
 - interrupts
 - VESA Text
 - A base LIBC
+- Zyra 1.0 Support
 
 ## Todo
 
+- Zyra 1.1 Support (experimental and undocumented for now)
+- VFS
 - ROFS
 - RyPB
 - MBR
 - BRFS
 - RyFS
-- VFS
 - ATA LBA48 Support (IDE/SATA Legacy)
 - uhci Support
 - ohci Support

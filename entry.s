@@ -153,6 +153,4 @@ load_idt:
 
 global isr_stub
 isr_stub:
-    pushad
-    popad
     iret

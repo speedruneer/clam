@@ -1,7 +1,7 @@
 #include <idt.h>
 #include <text.h>
 #include <vesa.h>
-
+#include <ps2.h>
 
 static void print_registers_state(void) {
     uint32_t eax, ebx, ecx, edx, esi, edi, ebp, esp;
@@ -107,6 +107,7 @@ static void pic_init() {
 }
 
 void init_idt() {
+    printf("[idt] Initializing IDT\n");
     pic_init();
     set_idt_entry(0,  (uint32_t)exception0,  0x08, 0x8E);
     set_idt_entry(1,  (uint32_t)exception1,  0x08, 0x8E);
@@ -141,23 +142,23 @@ void init_idt() {
     set_idt_entry(30, (uint32_t)exception30, 0x08, 0x8E);
     set_idt_entry(31, (uint32_t)exception31, 0x08, 0x8E);
 
-    // ISRs
-    set_idt_entry(32, isr_stub, 0x08, 0x8E);
-    set_idt_entry(33, isr_stub, 0x08, 0x8E);
-    set_idt_entry(34, isr_stub, 0x08, 0x8E);
-    set_idt_entry(35, isr_stub, 0x08, 0x8E);
-    set_idt_entry(36, isr_stub, 0x08, 0x8E);
-    set_idt_entry(37, isr_stub, 0x08, 0x8E);
-    set_idt_entry(38, isr_stub, 0x08, 0x8E);
-    set_idt_entry(39, isr_stub, 0x08, 0x8E);
-    set_idt_entry(40, isr_stub, 0x08, 0x8E);
-    set_idt_entry(41, isr_stub, 0x08, 0x8E);
-    set_idt_entry(42, isr_stub, 0x08, 0x8E);
-    set_idt_entry(43, isr_stub, 0x08, 0x8E);
-    set_idt_entry(44, isr_stub, 0x08, 0x8E);
-    set_idt_entry(45, isr_stub, 0x08, 0x8E);
-    set_idt_entry(46, isr_stub, 0x08, 0x8E);
-    set_idt_entry(47, isr_stub, 0x08, 0x8E);
+    // IRQs
+    set_idt_entry(32, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(33, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(34, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(35, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(36, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(37, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(38, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(39, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(40, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(41, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(42, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(43, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(44, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(45, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(46, (uint32_t)isr_stub, 0x08, 0x8E);
+    set_idt_entry(47, (uint32_t)isr_stub, 0x08, 0x8E);
     load_idt();
     asm volatile("sti");
 }

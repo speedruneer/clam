@@ -83,7 +83,7 @@ bootable: kernel bootloader
 # Run in QEMU
 # -----------------------------
 run:
-	qemu-system-x86_64 $(BOOTABLE_BIN) -m 4G -display sdl
+	qemu-system-x86_64 $(BOOTABLE_BIN) -m 4G
 
 # -----------------------------
 # Clean

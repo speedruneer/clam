@@ -25,6 +25,10 @@ inline uint16_t inw(uint16_t port) {
     return ret;
 }
 
+inline void outd(uint16_t port, uint32_t val) {
+    __asm__ volatile ("outl %0, %1" : : "a"(val), "Nd"(port));
+}
+
 inline void wait(uint32_t cycles) {
     for(uint32_t i = 0; i < cycles; i++) {
         asm volatile("nop");
