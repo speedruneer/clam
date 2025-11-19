@@ -23,12 +23,7 @@ typedef struct __attribute__((packed)) RyPB {
     rypb_part_32_t partitions[RYPB_MAX_PARTITIONS];
 } rypb_t;
 
-/**
- * @brief Reads the RyPB (32-bit) from the second sector (LBA 1)
- * @param rypb Pointer to a rypb_t struct to populate
- * @return 0 on success, non-zero on failure
- */
-int read_rypb(rypb_t* rypb);
+void read_rypb(rypb_t* rypb);
 
 #ifdef __cplusplus
 }
