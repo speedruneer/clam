@@ -20,7 +20,7 @@ start:
     mov al, KERNEL_SECTORS     ; number of sectors to read
     mov [0x3000], al
     mov ch, 0           ; cylinder 0
-    mov cl, 2           ; starting sector (sector 1 is bootloader)
+    mov cl, 3           ; starting sector (sector 1 is bootloader)
     
     call read_sectors
     jc disk_error       ; jump if carry set
@@ -62,3 +62,16 @@ ERROR_MSG: db "Disk read error!", 0
 times ((510) - ($-$$)) db 0
 
 dw 0xAA55
+
+db "RYPB", 32
+
+dd (KERNEL_SECTORS+3)
+dd 1024
+dw 88
+
+dd (KERNEL_SECTORS+3+1025)
+dd 2048
+dw 0072
+
+
+times 1024 - ($ - $$) db 0

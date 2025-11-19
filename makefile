@@ -41,13 +41,13 @@ all: bootable
 	$(NASM) -f elf32 $< -o $@ 
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@ 2>build.log
+	@$(CC) $(CFLAGS) -c $< -o $@ 2>>build.log
 
 # -----------------------------
 # Link kernel ELF
 # -----------------------------
 kernel: $(OBJ_ALL)
-	$(LD) $(LDFLAGS) -o $(KERNEL_ELF) $^ 2>build.log
+	$(LD) $(LDFLAGS) -o $(KERNEL_ELF) $^ 2>>build.log
 
 # Convert ELF -> flat binary
 $(KERNEL_BIN): kernel

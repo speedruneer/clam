@@ -7,13 +7,13 @@
 - VESA Text
 - A base LIBC
 - Zyra 1.0 Support
+- RyPB
 
 ## Todo
 
 - Zyra 1.1 Support (experimental and undocumented for now)
 - VFS
 - ROFS
-- RyPB
 - MBR
 - BRFS
 - RyFS

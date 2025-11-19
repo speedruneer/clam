@@ -1,7 +1,6 @@
 #include <idt.h>
 #include <text.h>
 #include <vesa.h>
-#include <ps2.h>
 
 static void print_registers_state(void) {
     uint32_t eax, ebx, ecx, edx, esi, edi, ebp, esp;
