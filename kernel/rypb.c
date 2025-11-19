@@ -3,16 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-
-typedef struct __attribute__((packed)) part32 {
-    uint32_t starting_lba;  // 32-bit LBA
-    uint32_t size;          // 32-bit size
-    uint16_t part_type;    // 16-bit type
-} rypb_part_32_t;
-
-typedef struct __attribute__((packed)) RyPB {
-    rypb_part_32_t partitions[50]; // max 50 partitions
-} rypb_t;
+#include <rypb.h>
 
 
 void read_rypb(rypb_t* rypb) {
