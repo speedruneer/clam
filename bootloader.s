@@ -15,13 +15,11 @@ start:
     mov dl, 0x80        ; first hard disk
     xor cx, cx
 
-    mov si, ERROR_MSG
+    mov ax, KERNEL_SECTORS     ; number of sectors to read
+    mov [0x3000], ax
 
-    mov al, KERNEL_SECTORS     ; number of sectors to read
-    mov [0x3000], al
-    mov ch, 0           ; cylinder 0
-    mov cl, 3           ; starting sector (sector 1 is bootloader)
-    
+    mov si, read_dap
+
     call read_sectors
     jc disk_error       ; jump if carry set
 
@@ -39,7 +37,7 @@ start:
 ; Sets CF on error
 ; -----------------------------
 read_sectors:
-    mov ah, 0x02        ; BIOS read sectors
+    mov ah, 0x42        ; BIOS read sectors
     int 0x13
     ret
 
@@ -58,6 +56,13 @@ disk_error:
 
 ERROR_MSG: db "Disk read error!", 0
 
+read_dap:
+    db 10h ; size of the DAP
+    db 0 ; unused
+    dw KERNEL_SECTORS ; size, max of 32MB
+    dd LOAD_SEG ; seg:offset to load at
+    dd 2 ; low address of LBA
+    dd 0 ; high address of LBA
 
 times ((510) - ($-$$)) db 0
 
