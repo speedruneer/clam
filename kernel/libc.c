@@ -241,19 +241,21 @@ static header_t *find_free_block(uint32_t size) {
 // --------------------
 
 void *malloc(size_t size) {
-    if (!size) return NULL;
+    if (!size) {printf("[malloc] !size\n"); return NULL;}
     heap_init();
     uint32_t req = ALIGN4(size);
     header_t *blk = find_free_block(req);
-    if (!blk) return NULL; // out of memory
+    if (!blk) {printf("[malloc] !blk\n"); return NULL;} // out of memory
     split_block(blk, req);
     blk->free = 0;
+    printf("[malloc] allocated %d bytes\n", size);
     return header_to_payload(blk);
 }
 
 void free(void *ptr) {
     if (!ptr) return;
     header_t *h = payload_to_header(ptr);
+    printf("[free] freed %d bytes\n", h->size);
     if ((uint8_t*)h < _heap_start || (uint8_t*)h >= _heap_start + _heap_size) return;
     h->free = 1;
     coalesce();

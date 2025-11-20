@@ -76,6 +76,8 @@ bootloader: $(BOOT_SRC) $(KERNEL_BIN)
 bootable: kernel bootloader
 	# Combine bootloader + kernel
 	cat $(BOOTLOADER_BIN) $(KERNEL_BIN) > $(BOOTABLE_BIN)
+	@nasm -f bin -o ryfs.bin ryfs.s
+	@cat ryfs.bin >> $(BOOTABLE_BIN)
 	@echo "Bootable OS created: $(BOOTABLE_BIN)"
 	rm $(OBJ_ALL) *.elf *.bin
 
