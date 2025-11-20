@@ -4,10 +4,6 @@
 #include <stdint.h>
 #include <stddef.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 // Maximum partitions supported in RyPB
 #define RYPB_MAX_PARTITIONS 50
 
@@ -24,9 +20,5 @@ typedef struct __attribute__((packed)) RyPB {
 } rypb_t;
 
 void read_rypb(rypb_t* rypb);
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif // RYPB_H

@@ -24,6 +24,6 @@ SECTIONS
     {
         *(.bss)
         *(COMMON)
-        _end = .;    /* heap starts here */
     }
+    _end = .;    /* heap starts here */
 }

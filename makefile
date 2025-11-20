@@ -10,7 +10,7 @@ CC      := i686-elf-gcc
 LD      := ld
 OBJCOPY := objcopy
 
-CFLAGS  := -m32 -ffreestanding -O2 -Wall -Iinclude -pedantic -Wextra -isystem /usr/include
+CFLAGS  := -m32 -ffreestanding -O1 -Wall -Iinclude -pedantic -Wextra -isystem /usr/include
 LDFLAGS := -m elf_i386 -T linker.ld
 
 # Sources
@@ -82,7 +82,7 @@ bootable: kernel bootloader
 # -----------------------------
 # Run in QEMU
 # -----------------------------
-run:
+run: bootable
 	qemu-system-x86_64 $(BOOTABLE_BIN) -m 4G
 
 # -----------------------------
